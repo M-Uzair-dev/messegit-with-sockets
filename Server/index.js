@@ -6,8 +6,8 @@ const chatsRoute = require("./Routes/chatsroute");
 const messagesroute = require("./Routes/messagesroute");
 const cookieParser = require("cookie-parser");
 const bodyparser = require("body-parser");
-const http = require("http"); // Add this line
-const socketIo = require("socket.io"); // Add this line
+const http = require("http");
+const socketIo = require("socket.io");
 require("dotenv").config();
 
 const app = express();
@@ -45,7 +45,6 @@ io.on("connection", (socket) => {
     socket.join(roomId);
   });
 
-  // Change the event data structure to send an object with message and username
   socket.on("sendMessage", ({ roomId, data }) => {
     io.to(roomId).emit("receiveMessage", data);
   });
